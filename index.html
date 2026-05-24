@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
-    <title>الأذكار - Adhkar Pro | متكامل</title>
+    <title>الأذكار - Adhkar Pro | الإصدار الكامل</title>
     <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22%D8%A7%D9%84%D8%A3%D8%B0%D9%83%D8%A7%D8%B1%20Pro%22%2C%22short_name%22%3A%22%D8%A3%D8%B0%D9%83%D8%A7%D8%B1%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f7f4ed%22%2C%22theme_color%22%3A%22%230D7C66%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20100%20100'%3E%3Ctext%20y%3D'.9em'%20font-size%3D'90'%3E%F0%9F%8C%99%3C%2Ftext%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22100x100%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js">
     </script>
@@ -34,7 +34,7 @@
             --font-arabic: 'Amiri', serif;
             --font-size-arabic: 1.3rem;
             --counter-size: 50px;
-            --header-height: 64px;
+            --header-min-height: 64px;
             --bottom-nav-height: 72px;
             --backdrop-blur: 14px;
             --safe-bottom: env(safe-area-inset-bottom, 0px);
@@ -73,7 +73,6 @@
             padding-bottom: calc(var(--bottom-nav-height) + var(--safe-bottom) + 20px);
         }
 
-        /* ----- animated islamic background pattern ----- */
         body::before {
             content: '';
             position: fixed;
@@ -104,17 +103,32 @@
         .ripple span.ripple-effect { position:absolute; border-radius:50%; background:rgba(255,255,255,0.5); transform:scale(0); animation:ripple-anim 0.6s linear; pointer-events:none; }
         @keyframes ripple-anim { to { transform:scale(4); opacity:0; } }
 
-        .header { position:sticky; top:0; z-index:100; padding:0 14px; height:var(--header-height); display:flex; align-items:center; justify-content:space-between; gap:8px; background: var(--surface); backdrop-filter:blur(var(--backdrop-blur)); -webkit-backdrop-filter:blur(var(--backdrop-blur)); border-bottom:1px solid var(--border); box-shadow:var(--shadow-sm); }
-        .header-brand { display:flex; align-items:center; gap:8px; font-size:1.2rem; font-weight:700; color:var(--primary); cursor:pointer; }
-        .logo-icon { width:38px; height:38px; border-radius:12px; background:linear-gradient(135deg, var(--primary), #0A5F4D); display:flex; align-items:center; justify-content:center; font-size:1.4rem; color:#fff; }
-        .header-actions { display:flex; align-items:center; gap:2px; flex-wrap:wrap; }
-        .btn-icon { width:42px; height:42px; border-radius:50%; border:none; background:transparent; cursor:pointer; font-size:1.2rem; color:var(--text-secondary); transition:0.2s; display:flex; align-items:center; justify-content:center; }
+        .header {
+            position: sticky; top:0; z-index:100; padding: 8px 10px;
+            min-height: var(--header-min-height);
+            display: flex; align-items: center; justify-content: space-between; gap: 6px;
+            background: var(--surface); backdrop-filter:blur(var(--backdrop-blur)); -webkit-backdrop-filter:blur(var(--backdrop-blur));
+            border-bottom:1px solid var(--border); box-shadow:var(--shadow-sm);
+            flex-wrap: wrap;
+        }
+        .header-brand { display:flex; align-items:center; gap:6px; font-size:1.1rem; font-weight:700; color:var(--primary); cursor:pointer; white-space:nowrap; }
+        .logo-icon { width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg, var(--primary), #0A5F4D); display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#fff; }
+        .header-actions { display:flex; align-items:center; gap:4px; flex-wrap:wrap; justify-content:flex-end; }
+        .btn-icon { width:36px; height:36px; border-radius:50%; border:none; background:transparent; cursor:pointer; font-size:1rem; color:var(--text-secondary); transition:0.2s; display:flex; align-items:center; justify-content:center; }
         .btn-icon:active { background:var(--surface-alt); color:var(--primary); transform:scale(0.93); }
         .btn-icon.active { background:var(--primary-light); color:var(--primary); }
         .btn-icon.dnd-active { background: #fde8e8; color: var(--dnd-active); }
+        .quran-btn { background:var(--gold); color:#fff; padding:6px 12px; border-radius:50px; border:none; cursor:pointer; font-weight:600; font-size:0.8rem; display:flex; align-items:center; gap:4px; white-space:nowrap; }
+        .install-btn { background:var(--primary); color:#fff; padding:6px 12px; border-radius:50px; border:none; cursor:pointer; font-weight:600; font-size:0.75rem; display:inline-flex; align-items:center; gap:4px; margin-right:4px; white-space:nowrap; }
+        @media (max-width: 380px) {
+            .header { padding: 6px 8px; }
+            .header-brand { font-size: 1rem; }
+            .logo-icon { width: 30px; height: 30px; font-size: 1rem; }
+            .btn-icon { width: 32px; height: 32px; font-size: 0.9rem; }
+            .quran-btn, .install-btn { font-size: 0.7rem; padding: 5px 10px; }
+        }
 
         .app-container { position:relative; z-index:1; max-width:900px; margin:0 auto; padding:10px 12px 20px; }
-
         .hero { text-align:center; padding:16px 6px 10px; }
         .hero .bismillah { font-family:var(--font-arabic); font-size:1.5rem; color:var(--gold-dark); margin-bottom:4px; }
         .hero h1 { font-family:var(--font-arabic); font-size:2rem; font-weight:700; color:var(--primary); margin-bottom:2px; }
@@ -158,49 +172,12 @@
         .btn-speak:active { color:var(--primary); background:var(--primary-light); }
         .btn-share:active { color:#2980b9; background:rgba(41,128,185,0.08); }
 
-        /* Add dhikr form */
-        .add-dhikr-form {
-            background: var(--surface);
-            backdrop-filter: blur(var(--backdrop-blur));
-            border: 1px dashed var(--gold);
-            border-radius: var(--radius-lg);
-            padding: 16px;
-            margin-top: 8px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .add-dhikr-form input, .add-dhikr-form textarea {
-            width: 100%;
-            padding: 10px 14px;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            background: var(--surface-solid);
-            font-family: var(--font-ui);
-            color: var(--text);
-            font-size: 0.9rem;
-        }
-        .add-dhikr-form textarea {
-            min-height: 80px;
-            resize: vertical;
-        }
-        .add-dhikr-form button {
-            align-self: flex-end;
-            padding: 10px 20px;
-            background: var(--primary);
-            color: #fff;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.85rem;
-            font-family: var(--font-ui);
-        }
+        .add-dhikr-form { background: var(--surface); backdrop-filter: blur(var(--backdrop-blur)); border: 1px dashed var(--gold); border-radius: var(--radius-lg); padding: 16px; margin-top: 8px; display: flex; flex-direction: column; gap: 8px; }
+        .add-dhikr-form input, .add-dhikr-form textarea { width: 100%; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface-solid); font-family: var(--font-ui); color: var(--text); font-size: 0.9rem; }
+        .add-dhikr-form button { align-self: flex-end; padding: 10px 20px; background: var(--primary); color: #fff; border: none; border-radius: 50px; cursor: pointer; font-weight: 600; font-size: 0.85rem; font-family: var(--font-ui); }
 
         .tasbih-section { background:var(--surface); backdrop-filter:blur(var(--backdrop-blur)); border-radius:var(--radius-xl); padding:20px 16px; text-align:center; margin-bottom:16px; border:1px solid var(--border); box-shadow:var(--shadow-lg); }
         .tasbih-display { font-size:3.5rem; font-weight:900; color:var(--primary); line-height:1; }
-        .tasbih-label { font-size:0.9rem; color:var(--text-secondary); margin-bottom:2px; }
-        .tasbih-target-info { font-size:0.8rem; color:var(--gold-dark); margin-bottom:10px; }
         .tasbih-big-btn { width:120px; height:120px; border-radius:50%; border:3px solid var(--primary); background:var(--surface-solid); cursor:pointer; font-size:1rem; font-weight:700; color:var(--primary); transition:0.15s; margin:10px auto; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; box-shadow:0 8px 30px rgba(13,124,102,0.15); }
         .tasbih-big-btn:active { background:var(--primary); color:#fff; transform:scale(0.88); }
         .tasbih-mode-select { display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin-top:10px; }
@@ -218,9 +195,6 @@
 
         .whatsapp-float { position:fixed; bottom:calc(var(--bottom-nav-height) + var(--safe-bottom) + 20px); right:16px; z-index:120; width:56px; height:56px; border-radius:50%; background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.8rem; box-shadow:0 8px 24px rgba(37,211,102,0.4); cursor:pointer; transition:0.2s; border:none; text-decoration:none; }
         .whatsapp-float:active { transform:scale(0.9); }
-
-        .quran-btn { background:var(--gold); color:#fff; padding:8px 16px; border-radius:50px; border:none; cursor:pointer; font-weight:600; font-size:0.85rem; display:flex; align-items:center; gap:4px; }
-        .install-btn { background:var(--primary); color:#fff; padding:8px 16px; border-radius:50px; border:none; cursor:pointer; font-weight:600; font-size:0.8rem; display:inline-flex; align-items:center; gap:4px; margin-right:4px; }
 
         .settings-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:200; display:none; align-items:stretch; justify-content:center; }
         .settings-overlay.show { display:flex; }
@@ -325,7 +299,7 @@
     <button class="nav-item" data-cat="favorites"><span class="nav-icon">❤️</span> مفضلة</button>
 </nav>
 
-<a class="whatsapp-float" id="whatsappFloat" target="_blank" title="شارك على واتساب" aria-label="مشاركة واتساب">💬</a>
+<a class="whatsapp-float" id="whatsappFloat" target="_blank" title="شارك على واتساب">💬</a>
 
 <div class="settings-overlay" id="settingsOverlay">
     <div class="settings-panel">
@@ -360,63 +334,50 @@
     // ========== DATA ==========
     let adhkarData = JSON.parse(localStorage.getItem('adhkar-custom-data') || JSON.stringify({
         morning: [
-            { id:'m1', text:'اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ', count:1, translation:'آية الكرسي - أعظم آية في القرآن', source:'سورة البقرة: 255' },
-            { id:'m2', text:'قُلْ هُوَ اللَّهُ أَحَدٌ (1) اللَّهُ الصَّمَدُ (2) لَمْ يَلِدْ وَلَمْ يُولَدْ (3) وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ (4)', count:3, translation:'سورة الإخلاص (3 مرات)', source:'' },
-            { id:'m3', text:'قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ (1) مِن شَرِّ مَا خَلَقَ (2) وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ (3) وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ (4) وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ (5)', count:3, translation:'سورة الفلق (3 مرات)', source:'' },
-            { id:'m4', text:'قُلْ أَعُوذُ بِرَبِّ النَّاسِ (1) مَلِكِ النَّاسِ (2) إِلَٰهِ النَّاسِ (3) مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ (4) الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ (5) مِنَ الْجِنَّةِ وَالنَّاسِ (6)', count:3, translation:'سورة الناس (3 مرات)', source:'' },
-            { id:'m5', text:'أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، رَبِّ أَسْأَلُكَ خَيْرَ مَا فِي هَذَا الْيَوْمِ وَخَيْرَ مَا بَعْدَهُ، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِي هَذَا الْيَوْمِ وَشَرِّ مَا بَعْدَهُ، رَبِّ أَعُوذُ بِكَ مِنَ الْكَسَلِ وَسُوءِ الْكِبَرِ، رَبِّ أَعُوذُ بِكَ مِنْ عَذَابٍ فِي النَّارِ وَعَذَابٍ فِي الْقَبْرِ', count:1, translation:'دعاء الصباح', source:'رواه مسلم' },
-            { id:'m6', text:'اللَّهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ النُّشُورُ', count:1, translation:'دعاء الصباح', source:'رواه الترمذي' },
-            { id:'m7', text:'اللَّهُمَّ أَنْتَ رَبِّي، لَا إِلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي، فَاغْفِرْ لِي، فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ', count:1, translation:'سيد الاستغفار', source:'رواه البخاري', virtue:'من قالها حين يصبح موقناً بها فمات من يومه دخل الجنة' },
-            { id:'m8', text:'اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ، اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي دِينِي وَدُنْيَايَ وَأَهْلِي وَمَالِي، اللَّهُمَّ اسْتُرْ عَوْرَاتِي وَآمِنْ رَوْعَاتِي، اللَّهُمَّ احْفَظْنِي مِنْ بَيْنِ يَدَيَّ وَمِنْ خَلْفِي وَعَنْ يَمِينِي وَعَنْ شِمَالِي وَمِنْ فَوْقِي، وَأَعُوذُ بِعَظَمَتِكَ أَنْ أُغْتَالَ مِنْ تَحْتِي', count:1, translation:'دعاء العافية', source:'رواه أبو داود' },
-            { id:'m9', text:'اللَّهُمَّ عَافِنِي فِي بَدَنِي، اللَّهُمَّ عَافِنِي فِي سَمْعِي، اللَّهُمَّ عَافِنِي فِي بَصَرِي، لَا إِلَهَ إِلَّا أَنْتَ', count:3, translation:'دعاء العافية في البدن (3 مرات)', source:'رواه أبو داود' },
-            { id:'m10', text:'اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْكُفْرِ وَالْفَقْرِ، وَأَعُوذُ بِكَ مِنْ عَذَابِ الْقَبْرِ، لَا إِلَهَ إِلَّا أَنْتَ', count:3, translation:'تعوذ من الكفر والفقر (3 مرات)', source:'رواه أبو داود' },
-            { id:'m11', text:'حَسْبِيَ اللَّهُ لَا إِلَهَ إِلَّا هُوَ، عَلَيْهِ تَوَكَّلْتُ، وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ', count:7, translation:'حسبي الله (7 مرات)', source:'رواه أبو داود' },
-            { id:'m12', text:'اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلًا مُتَقَبَّلًا', count:1, translation:'دعاء طلب العلم والرزق', source:'رواه ابن ماجه' },
-            { id:'m13', text:'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ، عَدَدَ خَلْقِهِ، وَرِضَا نَفْسِهِ، وَزِنَةَ عَرْشِهِ، وَمِدَادَ كَلِمَاتِهِ', count:3, translation:'تسبيح (3 مرات)', source:'رواه مسلم' },
-            { id:'m14', text:'لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ', count:10, translation:'تهليل (10 مرات)', source:'رواه مسلم', virtue:'من قالها 10 مرات كان كمن أعتق 4 أنفس من ولد إسماعيل' },
-            { id:'m15', text:'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ', count:100, translation:'سبحان الله وبحمده (100 مرة)', source:'رواه مسلم', virtue:'من قالها 100 مرة حُطت خطاياه وإن كانت مثل زبد البحر' },
+            { id:'m1', text:'اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ', count:1, translation:'آية الكرسي', source:'البقرة 255' },
+            { id:'m2', text:'قُلْ هُوَ اللَّهُ أَحَدٌ (1) اللَّهُ الصَّمَدُ (2) لَمْ يَلِدْ وَلَمْ يُولَدْ (3) وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ (4)', count:3, translation:'الإخلاص (3)', source:'' },
+            { id:'m3', text:'قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ (1) مِن شَرِّ مَا خَلَقَ (2) وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ (3) وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ (4) وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ (5)', count:3, translation:'الفلق (3)', source:'' },
+            { id:'m4', text:'قُلْ أَعُوذُ بِرَبِّ النَّاسِ (1) مَلِكِ النَّاسِ (2) إِلَٰهِ النَّاسِ (3) مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ (4) الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ (5) مِنَ الْجِنَّةِ وَالنَّاسِ (6)', count:3, translation:'الناس (3)', source:'' },
+            { id:'m5', text:'أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ...', count:1, translation:'دعاء الصباح', source:'مسلم' },
+            { id:'m6', text:'اللَّهُمَّ بِكَ أَصْبَحْنَا...', count:1, translation:'دعاء الصباح', source:'الترمذي' },
+            { id:'m7', text:'اللَّهُمَّ أَنْتَ رَبِّي...', count:1, translation:'سيد الاستغفار', source:'البخاري' },
+            { id:'m8', text:'اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَافِيَةَ...', count:1, translation:'دعاء العافية', source:'أبو داود' },
+            { id:'m9', text:'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ', count:100, translation:'(100 مرة)', source:'مسلم' },
+            { id:'m10', text:'لَا إِلَهَ إِلَّا اللَّهُ...', count:10, translation:'تهليل (10)', source:'مسلم' },
         ],
         evening: [
-            { id:'e1', text:'اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ', count:1, translation:'آية الكرسي', source:'البقرة 255', virtue:'من قرأها حين يمسي أجير من الجن حتى يصبح' },
-            { id:'e2', text:'قُلْ هُوَ اللَّهُ أَحَدٌ... + قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ... + قُلْ أَعُوذُ بِرَبِّ النَّاسِ...', count:3, translation:'المعوذات (الإخلاص + الفلق + الناس) 3 مرات', source:'' },
-            { id:'e3', text:'أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، رَبِّ أَسْأَلُكَ خَيْرَ مَا فِي هَذِهِ اللَّيْلَةِ وَخَيْرَ مَا بَعْدَهَا، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِي هَذِهِ اللَّيْلَةِ وَشَرِّ مَا بَعْدَهَا، رَبِّ أَعُوذُ بِكَ مِنَ الْكَسَلِ وَسُوءِ الْكِبَرِ، رَبِّ أَعُوذُ بِكَ مِنْ عَذَابٍ فِي النَّارِ وَعَذَابٍ فِي الْقَبْرِ', count:1, translation:'دعاء المساء', source:'رواه مسلم' },
-            { id:'e4', text:'اللَّهُمَّ بِكَ أَمْسَيْنَا، وَبِكَ أَصْبَحْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ الْمَصِيرُ', count:1, translation:'دعاء المساء', source:'رواه الترمذي' },
-            { id:'e5', text:'اللَّهُمَّ أَنْتَ رَبِّي، لَا إِلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي، فَاغْفِرْ لِي، فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ', count:1, translation:'سيد الاستغفار', source:'رواه البخاري' },
-            { id:'e6', text:'اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ...', count:1, translation:'دعاء العافية', source:'رواه أبو داود' },
-            { id:'e7', text:'حَسْبِيَ اللَّهُ لَا إِلَهَ إِلَّا هُوَ، عَلَيْهِ تَوَكَّلْتُ، وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ', count:7, translation:'حسبي الله (7 مرات)', source:'رواه أبو داود' },
-            { id:'e8', text:'أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ', count:3, translation:'تعوذ بكلمات الله (3 مرات)', source:'رواه مسلم' },
-            { id:'e9', text:'اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَأَعُوذُ بِكَ مِنَ الْعَجْزِ وَالْكَسَلِ، وَأَعُوذُ بِكَ مِنَ الْبُخْلِ وَالْجُبْنِ، وَأَعُوذُ بِكَ مِنْ غَلَبَةِ الدَّيْنِ وَقَهْرِ الرِّجَالِ', count:1, translation:'دعاء الهم والحزن', source:'رواه أبو داود' },
-            { id:'e10', text:'لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ', count:10, translation:'تهليل (10 مرات)', source:'رواه مسلم' },
+            { id:'e1', text:'آية الكرسي...', count:1, translation:'آية الكرسي', source:'البقرة 255' },
+            { id:'e2', text:'المعوذات 3 مرات', count:3, translation:'المعوذات', source:'' },
+            { id:'e3', text:'أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ...', count:1, translation:'دعاء المساء', source:'مسلم' },
+            { id:'e4', text:'اللَّهُمَّ بِكَ أَمْسَيْنَا...', count:1, translation:'دعاء المساء', source:'الترمذي' },
+            { id:'e5', text:'أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ...', count:3, translation:'(3 مرات)', source:'مسلم' },
+            { id:'e6', text:'لَا إِلَهَ إِلَّا اللَّهُ...', count:10, translation:'تهليل (10)', source:'مسلم' },
         ],
         'after-prayer': [
-            { id:'p1', text:'أَسْتَغْفِرُ اللَّهَ', count:3, translation:'استغفار (3 مرات)', source:'رواه مسلم' },
-            { id:'p2', text:'اللَّهُمَّ أَنْتَ السَّلَامُ وَمِنْكَ السَّلَامُ، تَبَارَكْتَ يَا ذَا الْجَلَالِ وَالْإِكْرَامِ', count:1, translation:'دعاء بعد السلام', source:'رواه مسلم' },
-            { id:'p3', text:'لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، اللَّهُمَّ لَا مَانِعَ لِمَا أَعْطَيْتَ، وَلَا مُعْطِيَ لِمَا مَنَعْتَ، وَلَا يَنْفَعُ ذَا الْجَدِّ مِنْكَ الْجَدُّ', count:1, translation:'ذكر بعد السلام', source:'رواه البخاري' },
-            { id:'p4', text:'سُبْحَانَ اللَّهِ', count:33, translation:'تسبيح (33 مرة)', source:'رواه مسلم' },
-            { id:'p5', text:'الْحَمْدُ لِلَّهِ', count:33, translation:'تحميد (33 مرة)', source:'رواه مسلم' },
-            { id:'p6', text:'اللَّهُ أَكْبَرُ', count:34, translation:'تكبير (34 مرة)', source:'رواه مسلم' },
-            { id:'p7', text:'اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ', count:1, translation:'دعاء الإعانة على الذكر', source:'رواه أبو داود' },
-            { id:'p8', text:'اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ... (آية الكرسي)', count:1, translation:'آية الكرسي بعد كل صلاة', source:'رواه النسائي' },
+            { id:'p1', text:'أَسْتَغْفِرُ اللَّهَ', count:3, translation:'استغفار (3)', source:'مسلم' },
+            { id:'p2', text:'اللَّهُمَّ أَنْتَ السَّلَامُ...', count:1, translation:'دعاء', source:'مسلم' },
+            { id:'p3', text:'سُبْحَانَ اللَّهِ', count:33, translation:'تسبيح (33)', source:'مسلم' },
+            { id:'p4', text:'الْحَمْدُ لِلَّهِ', count:33, translation:'تحميد (33)', source:'مسلم' },
+            { id:'p5', text:'اللَّهُ أَكْبَرُ', count:34, translation:'تكبير (34)', source:'مسلم' },
+            { id:'p6', text:'آيَةُ الْكُرْسِيِّ', count:1, translation:'آية الكرسي', source:'النسائي' },
         ],
         sleep: [
-            { id:'s1', text:'بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا', count:1, translation:'دعاء النوم', source:'رواه البخاري' },
-            { id:'s2', text:'اللَّهُمَّ قِنِي عَذَابَكَ يَوْمَ تَبْعَثُ عِبَادَكَ', count:1, translation:'دعاء قبل النوم', source:'رواه أبو داود' },
-            { id:'s3', text:'بِاسْمِكَ رَبِّ وَضَعْتُ جَنْبِي، وَبِكَ أَرْفَعُهُ، إِنْ أَمْسَكْتَ نَفْسِي فَارْحَمْهَا، وَإِنْ أَرْسَلْتَهَا فَاحْفَظْهَا بِمَا تَحْفَظُ بِهِ عِبَادَكَ الصَّالِحِينَ', count:1, translation:'دعاء الاضطجاع', source:'رواه البخاري' },
-            { id:'s4', text:'سُبْحَانَ اللَّهِ (33 مرة)', count:33, translation:'تسبيح قبل النوم', source:'رواه البخاري' },
-            { id:'s5', text:'الْحَمْدُ لِلَّهِ (33 مرة)', count:33, translation:'تحميد قبل النوم', source:'رواه البخاري' },
-            { id:'s6', text:'اللَّهُ أَكْبَرُ (34 مرة)', count:34, translation:'تكبير قبل النوم', source:'رواه البخاري' },
-            { id:'s7', text:'قُلْ هُوَ اللَّهُ أَحَدٌ... + قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ... + قُلْ أَعُوذُ بِرَبِّ النَّاسِ... (المعوذات)', count:1, translation:'قراءة المعوذات والنفث في الكفين', source:'رواه البخاري' },
+            { id:'s1', text:'بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا', count:1, translation:'دعاء النوم', source:'البخاري' },
+            { id:'s2', text:'اللَّهُمَّ قِنِي عَذَابَكَ...', count:1, translation:'دعاء', source:'أبو داود' },
+            { id:'s3', text:'سُبْحَانَ اللَّهِ (33)', count:33, translation:'تسبيح', source:'البخاري' },
+            { id:'s4', text:'الْحَمْدُ لِلَّهِ (33)', count:33, translation:'تحميد', source:'البخاري' },
+            { id:'s5', text:'اللَّهُ أَكْبَرُ (34)', count:34, translation:'تكبير', source:'البخاري' },
+            { id:'s6', text:'المعوذات قبل النوم', count:1, translation:'المعوذات', source:'البخاري' },
         ],
         daily: [
-            { id:'d1', text:'اللَّهُمَّ إِنِّي أَسْأَلُكَ الْجَنَّةَ وَأَعُوذُ بِكَ مِنَ النَّارِ', count:3, translation:'دعاء مختصر', source:'' },
-            { id:'d2', text:'رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ', count:3, translation:'دعاء من القرآن', source:'البقرة 201' },
-            { id:'d3', text:'اللَّهُمَّ اغْفِرْ لِي وَارْحَمْنِي وَعَافِنِي وَارْزُقْنِي', count:3, translation:'دعاء النبي ﷺ', source:'' },
+            { id:'d1', text:'اللَّهُمَّ إِنِّي أَسْأَلُكَ الْجَنَّةَ وَأَعُوذُ بِكَ مِنَ النَّارِ', count:3, translation:'دعاء', source:'' },
+            { id:'d2', text:'رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً...', count:3, translation:'دعاء', source:'البقرة 201' },
+            { id:'d3', text:'اللَّهُمَّ اغْفِرْ لِي وَارْحَمْنِي...', count:3, translation:'دعاء', source:'' },
             { id:'d4', text:'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ', count:100, translation:'تسبيح', source:'' },
             { id:'d5', text:'لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ', count:100, translation:'حوقلة', source:'' },
         ]
     }));
 
-    // State
     let currentCategory = 'morning';
     let progress = JSON.parse(localStorage.getItem('adhkar-progress') || '{}');
     let favorites = JSON.parse(localStorage.getItem('adhkar-favorites') || '[]');
@@ -428,7 +389,6 @@
     let audioEnabled = settings.audioEnabled !== false;
     let dndActive = false;
 
-    // DOM
     const $dhikrList = document.getElementById('dhikrList');
     const $emptyState = document.getElementById('emptyState');
     const $categoryTabs = document.getElementById('categoryTabs');
@@ -529,33 +489,26 @@
 
     document.querySelectorAll('.ripple').forEach(b => b.addEventListener('click', addRipple));
 
+    // ----- تعديل دالة النطق: إزالة أرقام الآيات بين قوسين -----
     function speakDhikr(text) {
         if(!audioEnabled || dndActive) return;
+        // إزالة الأرقام بين قوسين مثل (1) أو (2) إلخ
+        const cleanText = text.replace(/\(\d+\)/g, '').replace(/\s+/g, ' ').trim();
         window.speechSynthesis.cancel();
-        const u = new SpeechSynthesisUtterance(text);
+        const u = new SpeechSynthesisUtterance(cleanText);
         u.lang='ar'; u.rate=0.9;
         window.speechSynthesis.speak(u);
     }
 
-    function saveCustomData() {
-        localStorage.setItem('adhkar-custom-data', JSON.stringify(adhkarData));
-    }
-
+    function saveCustomData() { localStorage.setItem('adhkar-custom-data', JSON.stringify(adhkarData)); }
     function addCustomDhikr(category, text, count, translation, source) {
         if (!text.trim()) return;
         const id = 'custom_' + Date.now();
-        adhkarData[category].push({
-            id,
-            text: text.trim(),
-            count: parseInt(count) || 1,
-            translation: translation.trim() || '',
-            source: source.trim() || ''
-        });
+        adhkarData[category].push({ id, text: text.trim(), count: parseInt(count) || 1, translation: translation.trim() || '', source: source.trim() || '' });
         saveCustomData();
         renderCurrentCategory();
         showToast('تمت إضافة الذكر بنجاح', '✅');
     }
-
     function renderAddDhikrForm(category) {
         if (category === 'favorites' || category === 'stats' || category === 'tasbih-section' || category === 'daily') return '';
         return `
@@ -570,7 +523,6 @@
             </div>
         `;
     }
-
     function renderDhikrCard(dhikr) {
         const comp = getCompletedCount(dhikr.id);
         const total = dhikr.count;
@@ -583,7 +535,6 @@
             <div class="dhikr-text" style="font-size:${settings.fontSize}rem;">${dhikr.text}</div>
             ${dhikr.translation ? `<div class="dhikr-translation">📖 ${dhikr.translation}</div>` : ''}
             ${dhikr.source ? `<div class="dhikr-source">📚 ${dhikr.source}</div>` : ''}
-            ${dhikr.virtue ? `<div style="margin-top:6px;font-size:0.75rem;color:var(--gold-dark);background:var(--gold-light);padding:4px 10px;border-radius:16px;display:inline-block;">✨ ${dhikr.virtue}</div>` : ''}
             <div class="dhikr-footer">
                 <div class="counter-area">
                     <button class="btn-counter ripple" data-id="${dhikr.id}" data-total="${total}">${remaining || '✓'}</button>
@@ -598,7 +549,6 @@
             </div>`;
         return card;
     }
-
     function renderCurrentCategory() {
         $dhikrList.innerHTML = '';
         $emptyState.style.display = 'none';
@@ -625,28 +575,23 @@
             } else {
                 list.forEach(d => $dhikrList.appendChild(renderDhikrCard(d)));
             }
-            // Append add form
             const formHTML = renderAddDhikrForm(currentCategory);
             if (formHTML) {
                 const formDiv = document.createElement('div');
                 formDiv.innerHTML = formHTML;
                 $dhikrList.appendChild(formDiv);
-                // Bind add button event
                 const btn = formDiv.querySelector(`#submitAdd_${currentCategory}`);
-                if (btn) {
-                    btn.addEventListener('click', () => {
-                        const text = document.getElementById(`addText_${currentCategory}`).value;
-                        const count = document.getElementById(`addCount_${currentCategory}`).value;
-                        const translation = document.getElementById(`addTranslation_${currentCategory}`).value;
-                        const source = document.getElementById(`addSource_${currentCategory}`).value;
-                        addCustomDhikr(currentCategory, text, count, translation, source);
-                    });
-                }
+                if (btn) btn.addEventListener('click', () => {
+                    addCustomDhikr(currentCategory,
+                        document.getElementById(`addText_${currentCategory}`).value,
+                        document.getElementById(`addCount_${currentCategory}`).value,
+                        document.getElementById(`addTranslation_${currentCategory}`).value,
+                        document.getElementById(`addSource_${currentCategory}`).value);
+                });
             }
         }
         updateStatsDisplay();
     }
-
     function switchCategory(cat) {
         currentCategory = cat;
         document.querySelectorAll('.cat-tab, .bottom-nav .nav-item').forEach(el => el.classList.remove('active'));
@@ -665,12 +610,7 @@
             const id = counter.dataset.id; const total = parseInt(counter.dataset.total);
             let cur = getCompletedCount(id); if(cur >= total) return;
             cur++; setCompletedCount(id, cur);
-            if(cur >= total) { 
-                showToast('🎉 أتممت الذكر!', '✅'); 
-                updateStreak(); 
-                addStarToButton(counter);
-                spawnConfetti();
-            }
+            if(cur >= total) { showToast('🎉 أتممت الذكر!', '✅'); updateStreak(); addStarToButton(counter); spawnConfetti(); }
             if(navigator.vibrate) navigator.vibrate(12);
             renderCurrentCategory();
         }
@@ -686,7 +626,6 @@
         if(share && navigator.share) navigator.share({title:'ذكر', text:share.dataset.text});
     });
 
-    // Tasbih
     document.getElementById('tasbihBigBtn').addEventListener('click', () => {
         tasbihState.history.push(tasbihState.count);
         tasbihState.count++; totalTasbihAllTime++;
@@ -726,19 +665,12 @@
     document.getElementById('btnQuran').onclick = () => window.open('https://quran.com/ar', '_blank');
     document.getElementById('whatsappFloat').href = `https://wa.me/?text=${encodeURIComponent('تطبيق الأذكار الشامل: ' + window.location.href)}`;
 
-    // DND Toggle
     document.getElementById('btnDND').addEventListener('click', function() {
         dndActive = !dndActive;
-        if(dndActive) {
-            this.classList.add('dnd-active');
-            showToast('🔕 وضع عدم الإزعاج مفعّل', '🌙');
-        } else {
-            this.classList.remove('dnd-active');
-            showToast('🔔 تم إلغاء وضع عدم الإزعاج', '🔊');
-        }
+        if(dndActive) { this.classList.add('dnd-active'); showToast('🔕 وضع عدم الإزعاج مفعّل', '🌙'); }
+        else { this.classList.remove('dnd-active'); showToast('🔔 تم إلغاء وضع عدم الإزعاج', '🔊'); }
     });
 
-    // Settings
     document.getElementById('btnSettings').onclick = () => $settingsOverlay.classList.add('show');
     document.getElementById('closeSettings').onclick = () => $settingsOverlay.classList.remove('show');
     document.getElementById('fontSizeSlider').addEventListener('input', e => {
@@ -767,7 +699,6 @@
         renderCurrentCategory();
     }
 
-    // Stats
     function openStatsModal() { $statsModal.classList.add('show'); renderChart(); }
     document.getElementById('closeStatsModal').onclick = () => $statsModal.classList.remove('show');
     function renderChart() {
@@ -799,7 +730,6 @@
         r.readAsText(f);
     };
 
-    // Reminders (respect DND)
     function checkReminders() {
         if(dndActive) return;
         const now = new Date();
@@ -812,7 +742,6 @@
     if(Notification.permission === 'default') Notification.requestPermission();
     setInterval(checkReminders, 60000);
 
-    // Swipe
     let touchStartX = 0;
     document.getElementById('appContainer').addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, {passive:true});
     document.getElementById('appContainer').addEventListener('touchend', e => {
@@ -827,7 +756,6 @@
         touchStartX = 0;
     });
 
-    // Install
     let deferredPrompt;
     window.addEventListener('beforeinstallprompt', (e) => {
         e.preventDefault(); deferredPrompt = e;
