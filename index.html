@@ -218,6 +218,16 @@
         .confetti-container { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
         .confetti-piece { position:absolute; width:8px; height:8px; background: var(--primary); border-radius:2px; animation: confettiFall 1s ease-out forwards; }
         @keyframes confettiFall { 0%{ transform:translateY(-100vh) rotate(0deg); opacity:1; } 100%{ transform:translateY(110vh) rotate(720deg); opacity:0; } }
+
+        /* تنسيق التذييل البسيط */
+        .powered-by {
+            text-align: center;
+            padding: 16px 10px 8px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            opacity: 0.8;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body data-theme="light">
@@ -289,6 +299,9 @@
 
     <div class="dhikr-list" id="dhikrList"></div>
     <div class="empty-state" id="emptyState" style="display:none;">📭 لا توجد أذكار</div>
+
+    <!-- تذييل بسيط -->
+    <div class="powered-by">Powered by Ehab Ashraf © 2026</div>
 </div>
 
 <nav class="bottom-nav" id="bottomNav">
@@ -331,7 +344,7 @@
 
 <script>
 (function() {
-    // ========== DATA WITH COMPLETE TEXTS ==========
+    // ========== DATA WITH COMPLETE TEXTS (NO ABBREVIATIONS) ==========
     let adhkarData = JSON.parse(localStorage.getItem('adhkar-custom-data') || JSON.stringify({
         morning: [
             { id:'m1', text:'اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ', count:1, translation:'آية الكرسي', source:'البقرة 255' },
